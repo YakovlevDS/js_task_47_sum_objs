@@ -32,7 +32,7 @@ const sumObjects = (...rest) => {
     const sumObj = {};
     for (item of rest) {
         for (key in item) {
-            // typeof sumObj.attribute === undefined
+            // typeof sumObj.attribute === 'undefined'
             sumObj.hasOwnProperty(key) === undefined
                 ? sumObj[key] += item[key] 
                 : sumObj[key] = item[key];
