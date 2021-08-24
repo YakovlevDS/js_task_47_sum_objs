@@ -28,24 +28,32 @@ const second = { a: 2, b: 10 };
 const third = { d: -5 };
 const four = { a: -4, b: 20, d: -15 };
 
-function sumObjects(...rest) {
+const sumObjects = (...rest) => {
     const sumObj = {};
     for (item of rest) {
         for (key in item) {
-             // console.log(key);
-           if (sumObj.hasOwnProperty(key)) {
-
-            sumObj[key] += item[key]
-           } else {
-
-            sumObj[key] = item[key]
-            // console.log(sumObj[key]);
-           }
-        }
+            // typeof sumObj.attribute !== "undefined"
+            sumObj.hasOwnProperty(key) == undefined
+                ? sumObj[key] += item[key] 
+                : sumObj[key] = item[key];
+        } 
     }
-    // console.log(rest);
+               
     return sumObj;
 }
+
+
+
+// const sumObjects = (...rest) => {
+//   return rest.reduce((sumObj, object) => {
+//     for (let key in object) {
+//       sumObj[key] == undefined ? sumObj[key] = object[key] :
+//         sumObj[key] = sumObj[key] + object[key];
+//     }
+//     return sumObj;
+//   }, {})
+// }
+
 console.log(sumObjects(obj));
 console.log(sumObjects());
 console.log(sumObjects(first));
