@@ -21,28 +21,31 @@
 // sumObjects(first, second, third) === {a: 4, b: 14, d: -5}
 
 
-// Solution 1
+
 const obj = {};
 const first = { a: 2, b: 4 };
 const second = { a: 2, b: 10 };
 const third = { d: -5 };
 const four = { a: -4, b: 20, d: -15 };
-
-const sumObjects = (...rest) => {
-    const sumObj = {};
-    for (item of rest) {
-        for (key in item) {
-            // typeof sumObj.attribute === 'undefined'
-            sumObj.hasOwnProperty(key) === undefined
-                ? sumObj[key] += item[key] 
-                : sumObj[key] = item[key];
-        } 
-    }
+// Solution 1
+// const sumObjects = (...rest) => {
+//     const sumObj = {};
+//     for (item of rest) {
+//         for (key in item) {
+//             // typeof sumObj.attribute === 'undefined'
+//             sumObj.hasOwnProperty(key) === undefined
+//                 ? sumObj[key] += item[key] 
+//                 : sumObj[key] = item[key];
+//         } 
+//     }
                
-    return sumObj;
-}
+//     return sumObj;
+// }
+
+// Solution 1
 
 
+// Solution 2
 
 // const sumObjects = (...rest) => {
 //   return rest.reduce((sumObj, object) => {
@@ -54,6 +57,31 @@ const sumObjects = (...rest) => {
 //   }, {})
 // }
 
+// Solution 3
+
+// function sumObjects(...rest) {
+//   const sumObj = {};
+
+//   for (const item of rest) {
+//     for (const key in item) {
+//       sumObj[key] = sumObj[key] + item[key] || item[key];
+//     }
+//   }
+
+//   return sumObj;
+// }
+
+
+// Solution 4
+
+const sumObjects = (...rest) => {
+   return rest.reduce((sumObj, obj) => {
+    for (let key in obj) {
+      sumObj[key] = sumObj[key] + obj[key] || obj[key];
+    }
+    return sumObj;
+  }, {})
+}
 console.log(sumObjects(obj));
 console.log(sumObjects());
 console.log(sumObjects(first));
